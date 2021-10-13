@@ -1,9 +1,8 @@
-function App() {
-    return (
-        <div>
-            <h1>Welcome!</h1>
-        </div>
-    );
-}
+import { FC } from 'react';
+import Home from './pages/Home';
+
+const App: FC = () => {
+    return <Home />;
+};
 
 export default App;

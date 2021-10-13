@@ -1,8 +1,7 @@
-* {
-    box-sizing: border-box;
-}
+@import '~antd/dist/antd.css';
 
-body {
+* {
     margin: 0;
-    font-family: 'Roboto';
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
