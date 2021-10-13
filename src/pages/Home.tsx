@@ -20,7 +20,7 @@ const fetchDogsBreed = async () => {
 
 const Home: FC = () => {
     useEffect(() => {
-        fetchDogsBreed().then((data) => console.log('breeds list: ', data));
+        // fetchDogsBreed().then((data) => console.log('breeds list: ', data));
     }, []);
     return <div>Home page</div>;
 };
