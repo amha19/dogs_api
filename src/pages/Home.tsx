@@ -8,12 +8,8 @@ const Home: FC = () => {
         <Row align="middle" justify="center">
             <Col xs={0} md={2} lg={5}></Col>
             <Col xs={24} md={20} lg={14}>
-                <Row justify="center">
-                    <Col>
-                        <SearchForm />
-                        <DogsList />
-                    </Col>
-                </Row>
+                <SearchForm />
+                <DogsList />
             </Col>
             <Col xs={0} md={2} lg={5}></Col>
         </Row>
