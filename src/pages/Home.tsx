@@ -1,28 +1,24 @@
 import { FC, useEffect } from 'react';
 import axios from 'axios';
-
-const fetchDogsBreed = async () => {
-    try {
-        const res = await axios.get(
-            'https://api.thedogapi.com/v1/breeds?limit=5',
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-ppi-key': '0e020774-9309-4b3f-9ac9-d036868570d3',
-                },
-            }
-        );
-        return res.data;
-    } catch (err) {
-        console.log(err);
-    }
-};
+import { Col, Row, Typography } from 'antd';
+import SearchForm from '../components/search/SearchForm';
+import DogsList from '../components/dogs/DogsList';
 
 const Home: FC = () => {
-    useEffect(() => {
-        // fetchDogsBreed().then((data) => console.log('breeds list: ', data));
-    }, []);
-    return <div>Home page</div>;
+    return (
+        <Row align="middle" justify="center">
+            <Col xs={0} md={2} lg={5}></Col>
+            <Col xs={24} md={20} lg={14}>
+                <Row justify="center">
+                    <Col>
+                        <SearchForm />
+                        <DogsList />
+                    </Col>
+                </Row>
+            </Col>
+            <Col xs={0} md={2} lg={5}></Col>
+        </Row>
+    );
 };
 
 export default Home;
