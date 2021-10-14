@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 import { Row, Col, Card, Spin, Alert, Typography } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-custom-hooks';
 import { fetchDogsBreed } from '../../store/dogs-action';
+import './DogsList.less';
 
+const { Title } = Typography;
 const { Meta } = Card;
 
 const DogsList = () => {
@@ -38,31 +40,21 @@ const DogsList = () => {
     return (
         <>
             <Row justify="center">
-                <Typography.Title level={3} style={{ margin: '56px 0 32px 0' }}>
+                <Title level={3} className="title">
                     Dogs
-                </Typography.Title>
+                </Title>
             </Row>
-            <Row gutter={[16, 32]} style={{ margin: '32px 0', minWidth: 450 }}>
+            <Row gutter={[16, 32]} className="row">
                 {dogBreeds.map((dogBreed) => {
                     return (
                         <Col key={dogBreed.id} xs={24} sm={12} md={8}>
                             <Card
                                 hoverable
                                 cover={
-                                    <div
-                                        style={{
-                                            height: '275px',
-                                            width: 'auto',
-                                        }}
-                                    >
+                                    <div className="img-container">
                                         <img
                                             alt={dogBreed.name}
                                             src={dogBreed.image.url}
-                                            style={{
-                                                height: '100%',
-                                                width: '100%',
-                                                objectFit: 'cover',
-                                            }}
                                         />
                                     </div>
                                 }

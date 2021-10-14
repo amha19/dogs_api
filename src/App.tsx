@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Navbar from './components/navbar/Navbar';
 import About from './pages/about/About';
 import Error from './pages/error/Erorr';
+import './App.less';
 
 const { Header, Content, Footer } = Layout;
 const { Text } = Typography;
@@ -13,14 +14,10 @@ const App: FC = () => {
     return (
         <BrowserRouter>
             <Layout>
-                <Header
-                    style={{
-                        color: '#fff',
-                    }}
-                >
+                <Header className="header">
                     <Navbar />
                 </Header>
-                <Content style={{ padding: '24px 0', backgroundColor: '#fff' }}>
+                <Content className="content">
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route exact path="/about" component={About} />
