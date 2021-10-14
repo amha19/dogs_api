@@ -1,6 +1,5 @@
-import { FC, useEffect } from 'react';
-import axios from 'axios';
-import { Col, Row, Typography } from 'antd';
+import { FC } from 'react';
+import { Col, Row } from 'antd';
 import SearchForm from '../components/search/SearchForm';
 import DogsList from '../components/dogs/DogsList';
 
