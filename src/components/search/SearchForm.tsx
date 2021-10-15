@@ -7,7 +7,9 @@ const SearchForm = () => {
     return (
         <Row justify="center" style={{ marginTop: 24 }}>
             <Col className="colStyle">
-                <Text strong>Search Your Favorite Dog Breed</Text>
+                <Text strong style={{ color: '#fff' }}>
+                    Search Your Favorite Dog Breed
+                </Text>
                 <Input
                     placeholder="e.g. Afghan Hound"
                     style={{ marginTop: 6 }}

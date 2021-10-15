@@ -34,7 +34,7 @@ const DogsList = () => {
                 message={error}
                 type="error"
                 banner
-                style={{ marginTop: 50 }}
+                style={{ marginTop: 50, marginBottom: 'calc(100vh - 435px)' }}
             />
         );
     }
