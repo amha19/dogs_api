@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Navbar from './components/navbar/Navbar';
 import About from './pages/about/About';
 import Error from './pages/error/Erorr';
-import SingleDog from './components/dogs/single-dog/SingleDog';
+import DogDetail from './pages/dog-detail/DogDetail';
 import './App.less';
 
 const { Header, Content, Footer } = Layout;
@@ -22,7 +22,7 @@ const App: FC = () => {
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route exact path="/about" component={About} />
-                        <Route exact path="/dog/:id" component={SingleDog} />
+                        <Route exact path="/dog/:id" component={DogDetail} />
                         <Route path="*" component={Error} />
                     </Switch>
                 </Content>

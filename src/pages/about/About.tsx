@@ -1,25 +1,24 @@
 import { FC } from 'react';
 import { Row, Col, Typography } from 'antd';
+import './About.less';
 
 const { Title, Paragraph } = Typography;
 
-const rowStyle = { height: 'calc(100vh - 204px)', width: 'auto' };
+const rowStyle = {
+    height: 'calc(100vh - 204px)',
+    width: 'auto',
+};
 
 const About: FC = () => {
     return (
         <Row justify="center" style={rowStyle}>
             <Col span={14}>
                 <Row justify="center">
-                    <Title
-                        level={2}
-                        style={{
-                            margin: '24px 0',
-                        }}
-                    >
+                    <Title level={2} className="about-title">
                         About Us
                     </Title>
                 </Row>
-                <Paragraph style={{ textAlign: 'justify' }}>
+                <Paragraph className="paragraph">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Phasellus in nulla ullamcorper, eleifend mi ut, lobortis
                     quam. Proin mollis iaculis diam eu aliquam. Morbi ut

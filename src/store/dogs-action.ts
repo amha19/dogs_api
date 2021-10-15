@@ -26,6 +26,8 @@ export const fetchDogsBreed = () => async (dispatch: AppDispatch) => {
                 name,
                 origin,
                 temperament,
+                height,
+                weight,
             } = breed;
 
             breeds.push({
@@ -40,6 +42,8 @@ export const fetchDogsBreed = () => async (dispatch: AppDispatch) => {
                 name,
                 origin,
                 temperament,
+                height,
+                weight,
             });
         }
 

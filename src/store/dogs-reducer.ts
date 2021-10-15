@@ -12,6 +12,14 @@ export interface DogBreedsDetail {
     name: string;
     origin: string;
     temperament: string;
+    height: {
+        imperial: string;
+        metric: string;
+    };
+    weight: {
+        imperial: string;
+        metric: string;
+    };
 }
 export interface DogBreedsState {
     dogBreeds: DogBreedsDetail[];
