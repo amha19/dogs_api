@@ -1,6 +1,6 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import { Row, Col, Space, Image, Typography } from 'antd';
+import { useParams, useHistory } from 'react-router-dom';
+import { Row, Col, Space, Image, Typography, Button } from 'antd';
 import { useAppSelector } from '../../hooks/redux-custom-hooks';
 import { DogBreedsDetail } from '../../store/dogs-reducer';
 import './DogDetail.less';
@@ -9,15 +9,21 @@ const { Text } = Typography;
 
 const DogDetail = () => {
     const { id } = useParams<{ id: string }>();
+    const history = useHistory();
     const dogs = useAppSelector((state) => state.breed.dogBreeds);
 
     const dog = dogs.find((d) => d.id === Number(id)) as DogBreedsDetail;
 
     return (
-        <Row align="middle" justify="center" className="detail-container">
+        <Row justify="center" className="detail-container">
             <Col xs={0} md={2} lg={5}></Col>
             <Col xs={24} md={20} lg={14}>
-                <Row>
+                <Row justify="center" style={{ margin: '32px 0' }}>
+                    <Button type="primary" onClick={() => history.push('/')}>
+                        Go Back
+                    </Button>
+                </Row>
+                <Row align="middle">
                     <Col>
                         <Space size={12}>
                             <Image

@@ -6,15 +6,12 @@ export const fetchDogsBreed = () => async (dispatch: AppDispatch) => {
     const breeds: DogBreedsDetail[] = [];
 
     try {
-        const res = await axios.get(
-            'https://api.thedogapi.com/v1/breeds?limit=10',
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-ppi-key': `${process.env.API_KEY}`,
-                },
-            }
-        );
+        const res = await axios.get('https://api.thedogapi.com/v1/breeds', {
+            headers: {
+                'Content-Type': 'application/json',
+                'x-ppi-key': `${process.env.API_KEY}`,
+            },
+        });
 
         for (let breed of res.data as any[]) {
             const {

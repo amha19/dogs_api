@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
-import { Row, Spin, Alert, Typography, Button } from 'antd';
+import { Row, Col, Spin, Alert, Typography, Button } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-custom-hooks';
 import { fetchDogsBreed } from '../../store/dogs-action';
+import { breedsAction } from '../../store/dogs-reducer';
 import './DogsList.less';
 import SingleDog from './single-dog/SingleDog';
 
@@ -9,14 +10,18 @@ const { Title } = Typography;
 
 const DogsList = () => {
     const dispatch = useAppDispatch();
-    const dogBreeds = useAppSelector((state) => state.breed.dogBreeds);
-    const isLoading = useAppSelector((state) => state.breed.isLoading);
-    const error = useAppSelector((state) => state.breed.error);
+    const { dogBreeds, isLoading, error, name } = useAppSelector(
+        (state) => state.breed
+    );
     // const dogs = useSelector((state: RootState) => state.breed);
 
     useEffect(() => {
         dispatch(fetchDogsBreed());
     }, [dispatch]);
+
+    const filteredDogs = [...dogBreeds].filter((dog) => {
+        return dog.name.toLowerCase().indexOf(name.toLowerCase()) !== -1;
+    });
 
     if (isLoading) {
         return (
@@ -44,9 +49,20 @@ const DogsList = () => {
                     Dogs
                 </Title>
             </Row>
-            <SingleDog dogBreeds={dogBreeds} />
+            <Row gutter={[16, 32]} className="row">
+                {filteredDogs.map((dog) => (
+                    <Col key={dog.id} xs={24} sm={12} md={8}>
+                        <SingleDog dogBreed={dog} />
+                    </Col>
+                ))}
+            </Row>
             <Row justify="center">
-                <Button type="default">Load more dogs</Button>
+                <Button
+                    type="default"
+                    onClick={() => dispatch(breedsAction.loadMoreDogs())}
+                >
+                    Load more dogs
+                </Button>
             </Row>
         </>
     );
