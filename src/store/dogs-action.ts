@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { AppDispatch } from './index';
-import { breedsAction, DogBreedsDetail } from './dogs-reducer';
+import { getDogBreeds, setError, DogBreedsDetail } from './dogs-reducer';
 
 export const fetchDogsBreed = () => async (dispatch: AppDispatch) => {
     const breeds: DogBreedsDetail[] = [];
@@ -44,9 +44,9 @@ export const fetchDogsBreed = () => async (dispatch: AppDispatch) => {
             });
         }
 
-        dispatch(breedsAction.getDogBreeds(breeds));
+        dispatch(getDogBreeds(breeds));
     } catch (err: any) {
         console.log(err);
-        dispatch(breedsAction.setError(err.message));
+        dispatch(setError(err.message));
     }
 };

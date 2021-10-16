@@ -27,7 +27,6 @@ export interface DogBreedsState {
     name: string;
     isLoading: boolean;
     error: string;
-    page: number;
 }
 
 const initialState: DogBreedsState = {
@@ -36,7 +35,6 @@ const initialState: DogBreedsState = {
     name: '',
     isLoading: true,
     error: '',
-    page: 0,
 };
 
 const dogBreedsSlice = createSlice({
@@ -49,23 +47,29 @@ const dogBreedsSlice = createSlice({
             state.isLoading = false;
             state.error = '';
             state.name = '';
-            state.page++;
         },
-        loadMoreDogs: (state) => {
-            if (state.page === 1) {
+        loadMoreDogs: (state, action: PayloadAction<number>) => {
+            if (action.payload === 1) {
                 state.dogBreeds = state.totalDogBreeds.slice(0, 100);
-                state.page++;
             }
-            if (state.page === 2) {
+            if (action.payload === 2) {
                 state.dogBreeds = state.totalDogBreeds.slice(0, 150);
-                state.page++;
             }
-            if (state.page === 3) {
+            if (action.payload > 2) {
                 state.dogBreeds = state.totalDogBreeds;
-                state.page++;
             }
         },
-
+        loadLessDogs: (state, action: PayloadAction<number>) => {
+            if (action.payload === 3) {
+                state.dogBreeds = state.totalDogBreeds.slice(0, 100);
+            }
+            if (action.payload === 4) {
+                state.dogBreeds = state.totalDogBreeds.slice(0, 150);
+            }
+            if (action.payload === 2) {
+                state.dogBreeds = state.totalDogBreeds.slice(0, 50);
+            }
+        },
         getByName: (state, action: PayloadAction<string>) => {
             state.name = action.payload;
         },
@@ -76,5 +80,6 @@ const dogBreedsSlice = createSlice({
     },
 });
 
-export const breedsAction = dogBreedsSlice.actions;
+export const { getDogBreeds, loadMoreDogs, loadLessDogs, getByName, setError } =
+    dogBreedsSlice.actions;
 export default dogBreedsSlice.reducer;

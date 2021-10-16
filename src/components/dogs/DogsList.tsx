@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
-import { Row, Col, Spin, Alert, Typography, Button } from 'antd';
+import { useState, useEffect } from 'react';
+import { Row, Col, Spin, Alert, Typography, Button, Space } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-custom-hooks';
 import { fetchDogsBreed } from '../../store/dogs-action';
-import { breedsAction } from '../../store/dogs-reducer';
+import { loadMoreDogs, loadLessDogs } from '../../store/dogs-reducer';
 import './DogsList.less';
 import SingleDog from './single-dog/SingleDog';
 
@@ -14,6 +14,7 @@ const DogsList = () => {
         (state) => state.breed
     );
     // const dogs = useSelector((state: RootState) => state.breed);
+    const [page, setPage] = useState<number>(1);
 
     useEffect(() => {
         dispatch(fetchDogsBreed());
@@ -57,12 +58,30 @@ const DogsList = () => {
                 ))}
             </Row>
             <Row justify="center">
-                <Button
-                    type="default"
-                    onClick={() => dispatch(breedsAction.loadMoreDogs())}
-                >
-                    Load more dogs
-                </Button>
+                <Space>
+                    {page < 4 && (
+                        <Button
+                            type="default"
+                            onClick={() => {
+                                dispatch(loadMoreDogs(page));
+                                setPage((prevPage) => prevPage + 1);
+                            }}
+                        >
+                            Load more dogs
+                        </Button>
+                    )}
+                    {page > 1 && (
+                        <Button
+                            type="default"
+                            onClick={() => {
+                                dispatch(loadLessDogs(page));
+                                setPage((prevPage) => prevPage - 1);
+                            }}
+                        >
+                            Load less dogs
+                        </Button>
+                    )}
+                </Space>
             </Row>
         </>
     );

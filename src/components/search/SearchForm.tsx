@@ -1,6 +1,6 @@
 import { Row, Typography, Input, Col } from 'antd';
 import { useAppDispatch } from '../../hooks/redux-custom-hooks';
-import { breedsAction } from '../../store/dogs-reducer';
+import { getByName } from '../../store/dogs-reducer';
 import './SearchForm.less';
 
 const { Text } = Typography;
@@ -17,7 +17,7 @@ const SearchForm = () => {
                     placeholder="e.g. Afghan Hound"
                     style={{ marginTop: 6 }}
                     onChange={(event) =>
-                        dispatch(breedsAction.getByName(event.target.value))
+                        dispatch(getByName(event.target.value))
                     }
                 />
             </Col>
