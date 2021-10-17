@@ -12,7 +12,7 @@ const Erorr: FC = () => {
                 imageStyle={{ height: 140 }}
                 style={{ color: '#fff' }}
             >
-                <Button type="primary" onClick={() => history.push('/')}>
+                <Button type="primary" onClick={() => history.goBack()}>
                     Go Back
                 </Button>
             </Empty>

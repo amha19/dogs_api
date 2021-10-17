@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Redirect } from 'react-router-dom';
 import { Row, Col, Space, Image, Typography, Button, Spin } from 'antd';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux-custom-hooks';
 import { DogBreedsDetail } from '../../store/dogs-reducer';
@@ -12,7 +12,7 @@ const DogDetail = () => {
     const { id } = useParams<{ id: string }>();
     const history = useHistory();
     const dispatch = useAppDispatch();
-    const dogs = useAppSelector((state) => state.breed.dogBreeds);
+    const dogs = useAppSelector((state) => state.breed.totalDogBreeds);
 
     useEffect(() => {
         if (dogs.length === 0) {
@@ -29,6 +29,8 @@ const DogDetail = () => {
     }
 
     const dog = dogs.find((d) => d.id === Number(id)) as DogBreedsDetail;
+
+    if (!dog) return <Redirect to="/" />;
 
     return (
         <Row justify="center" className="detail-container">

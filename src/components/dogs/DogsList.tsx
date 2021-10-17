@@ -10,9 +10,8 @@ const { Title } = Typography;
 
 const DogsList = () => {
     const dispatch = useAppDispatch();
-    const { dogBreeds, isLoading, error, name } = useAppSelector(
-        (state) => state.breed
-    );
+    const { totalDogBreeds, dogBreeds, isLoading, error, name } =
+        useAppSelector((state) => state.breed);
     // const dogs = useSelector((state: RootState) => state.breed);
     const [page, setPage] = useState<number>(1);
 
@@ -20,9 +19,13 @@ const DogsList = () => {
         dispatch(fetchDogsBreed());
     }, [dispatch]);
 
-    const filteredDogs = [...dogBreeds].filter((dog) => {
-        return dog.name.toLowerCase().indexOf(name.toLowerCase()) !== -1;
-    });
+    let dogs = [...dogBreeds];
+
+    if (name) {
+        dogs = [...totalDogBreeds].filter((dog) => {
+            return dog.name.toLowerCase().indexOf(name.toLowerCase()) !== -1;
+        });
+    }
 
     if (isLoading) {
         return (
@@ -51,7 +54,7 @@ const DogsList = () => {
                 </Title>
             </Row>
             <Row gutter={[16, 32]} className="row">
-                {filteredDogs.map((dog) => (
+                {dogs.map((dog) => (
                     <Col key={dog.id} xs={24} sm={12} md={8}>
                         <SingleDog dogBreed={dog} />
                     </Col>
@@ -59,7 +62,7 @@ const DogsList = () => {
             </Row>
             <Row justify="center">
                 <Space>
-                    {page < 4 && (
+                    {page < 4 && name === '' && (
                         <Button
                             type="default"
                             onClick={() => {
@@ -70,7 +73,7 @@ const DogsList = () => {
                             Load more dogs
                         </Button>
                     )}
-                    {page > 1 && (
+                    {page > 1 && name === '' && (
                         <Button
                             type="default"
                             onClick={() => {
